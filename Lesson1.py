@@ -17,5 +17,6 @@ def div(div1, div2):
     return div1 / div2
 
 
-
+def helloworld():
+    print("hello world")
 
