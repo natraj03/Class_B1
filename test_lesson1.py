@@ -8,3 +8,5 @@ def test_mult_positive():
 
 def test_div():
     assert div(4,2) == 2
+
+print('multfun')
