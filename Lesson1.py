@@ -20,3 +20,6 @@ def div(div1, div2):
 def helloworld():
     print("hello world")
 
+helloworld()
+
+div(10, 2)
