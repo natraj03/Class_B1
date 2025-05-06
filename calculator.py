@@ -4,7 +4,7 @@ def addfun(arg1,arg2):
 
 
 def mulfun(arg1,arg2):
-    return arg1 * arg2 + 1
+    return arg1 * arg2
 
 def subfun(arg1,arg2):
     return arg1 - arg2

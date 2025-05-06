@@ -9,6 +9,6 @@ def test_add():
 def test_mul():
     assert mulfun(10,10) == 101
     assert mulfun(10, 9) == 91
-    assert mulfun(10.5, 10) == 106.0
+    assert mulfun(10.5, 10) == 1061.0
 
 
