@@ -32,6 +32,7 @@ def allvalues():
     print("All values", values)
     return  values
 
+# allvaues = allvalues()
 def test_add(allvalues):
 
     firstRow = allvalues[0]  # row 0 first row

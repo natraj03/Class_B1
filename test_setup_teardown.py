@@ -9,7 +9,7 @@ def setup_function():
     global workbook
     workbook = openpyxl.load_workbook("practicefile.xlsx")
 
-    print("\n I am setup function")
+    print("\n I am setup \nfunction")
 
 
 def teardown_function():
