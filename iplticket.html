@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IPL Match Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    .total {
+      text-align: right;
+      font-weight: bold;
+      padding: 10px;
+    }
+    .member-count {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .member-count input[type="number"] {
+      width: 50px;
+      text-align: center;
+    }
+    .member-count button {
+      padding: 5px;
+    }
+  </style>
+</head>
+<body id="body" class="body">
+
+  <h2 id="form-title" class="heading">IPL Match Registration Form</h2>
+
+  <form id="registration-form" class="form">
+    <label for="name" id="label-name" class="label">Name:
+      <input type="text" name="name" id="input-name" class="input name-input" required>
+    </label>
+    <label for="surname" id="label-surname" class="label">Surname:
+      <input type="text" name="surname" id="input-surname" class="input surname-input" required>
+    </label>
+    <label for="dob" id="label-dob" class="label">Date of Birth:
+      <input type="date" name="dob" id="input-dob" class="input dob-input" required>
+    </label>
+    <label id="label-gender" class="label">Gender:
+      <input type="radio" name="gender" value="male" id="gender-male" class="radio gender-input"> Male
+      <input type="radio" name="gender" value="female" id="gender-female" class="radio gender-input"> Female
+      <input type="radio" name="gender" value="other" id="gender-other" class="radio gender-input"> Other
+    </label>
+    <label for="email" id="label-email" class="label">Email:
+      <input type="email" name="email" id="input-email" class="input email-input" required>
+      <input type="email" name="emailcnf" id="input-emailcnf" class="input email-input" required>
+
+    </label>
+    <label for="country" id="label-country" class="label">Country of Origin:
+      <select name="country" id="select-country" class="dropdown country-select" required>
+        <option value="">--Select Country--</option>
+        <option value="India">India</option>
+        <option value="Australia">Australia</option>
+        <option value="England">England</option>
+        <option value="South Africa">South Africa</option>
+        <option value="New Zealand">New Zealand</option>
+        <option value="Other">Other</option>
+      </select>
+    </label>
+    <label id="label-agree" class="label">
+      <input type="checkbox" name="agree" id="checkbox-agree" class="checkbox agree-checkbox" required> I Agree <a href="https://policies.google.com/terms?hl=en-IN&fg=1" target="_blank" id="terms-link">terms and conditions</a>
+    </label>
+
+    <h2 id="pricing-title" class="heading">IPL Match Pricing</h2>
+
+    <table id="pricing-table" class="table pricing-table">
+      <thead id="table-head" class="table-head">
+        <tr id="header-row" class="header-row">
+          <th class="column">Match #</th>
+          <th class="column">Date</th>
+          <th class="column">Teams</th>
+          <th class="column">Venue</th>
+          <th class="column">Price per Member</th>
+          <th class="column">Members</th>
+          <th class="column">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody id="table-body" class="table-body">
+        <tr data-price="500" id="match-1-row" class="match-row">
+          <td class="match-number">1</td>
+          <td class="match-date">2025-04-10</td>
+          <td class="match-teams">MI vs CSK</td>
+          <td class="match-venue">Mumbai</td>
+          <td class="match-price">₹500</td>
+          <td class="match-members">
+            <div class="member-count" id="member-count-1">
+              <button type="button" class="btn-decrease" id="btn-decrease-1" onclick="changeCount(this, -1)">-</button>
+              <input type="number" id="input-member-1" class="member-input" value="0" min="0" onchange="updateTotal()" />
+              <button type="button" class="btn-increase" id="btn-increase-1" onclick="changeCount(this, 1)">+</button>
+            </div>
+          </td>
+          <td class="subtotal" id="subtotal-1">₹0</td>
+        </tr>
+        <tr data-price="750" id="match-2-row" class="match-row">
+          <td class="match-number">2</td>
+          <td class="match-date">2025-04-12</td>
+          <td class="match-teams">RCB vs KKR</td>
+          <td class="match-venue">Bangalore</td>
+          <td class="match-price">₹750</td>
+          <td class="match-members">
+            <div class="member-count" id="member-count-2">
+              <button type="button" class="btn-decrease" id="btn-decrease-2" onclick="changeCount(this, -1)">-</button>
+              <input type="number" id="input-member-2" class="member-input" value="0" min="0" onchange="updateTotal()" />
+              <button type="button" class="btn-increase" id="btn-increase-2" onclick="changeCount(this, 1)">+</button>
+            </div>
+          </td>
+          <td class="subtotal" id="subtotal-2">₹0</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="total" id="total-container">Total: ₹<span id="total-price" class="total-price">0</span></div>
+
+    <br>
+    <button type="submit" id="submit-btn" class="submit-button">Submit</button>
+  </form>
+
+  <script>
+    function changeCount(button, delta) {
+      const input = button.parentElement.querySelector('input');
+      let count = parseInt(input.value) || 0;
+      count += delta;
+      if (count < 0) count = 0;
+      input.value = count;
+      updateTotal();
+    }
+
+    function updateTotal() {
+      let total = 0;
+      const rows = document.querySelectorAll('#pricing-table tbody tr');
+      rows.forEach(row => {
+        const price = parseInt(row.getAttribute('data-price'));
+        const count = parseInt(row.querySelector('input').value) || 0;
+        const subtotal = price * count;
+        row.querySelector('.subtotal').innerText = '₹' + subtotal;
+        total += subtotal;
+      });
+      document.getElementById('total-price').innerText = total;
+    }
+  </script>
+
+</body>
+</html>

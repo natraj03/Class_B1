@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>XPath & Selenium Locator Cheat Sheet</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      line-height: 1.6;
+      background: #f9f9f9;
+    }
+    h1 {
+      color: #333;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #eee;
+    }
+    code {
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>XPath & Selenium Locator Cheat Sheet</h1>
+
+  <p>This cheat sheet uses examples from your form to help you locate elements with both XPath and Selenium locator strategies.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>XPath Example</th>
+        <th>Selenium Locator</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Absolute XPath</td>
+        <td>Full path from root</td>
+        <td><code>/html/body/form/label[1]/input</code></td>
+        <td><code>By.ID("input-name")</code></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Relative XPath</td>
+        <td>Starts from anywhere with //</td>
+        <td><code>//input[@id='input-name']</code></td>
+        <td><code>By.ID("input-name")</code></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Using Attributes</td>
+        <td>Locate by attribute like name</td>
+        <td><code>//input[@name='email']</code></td>
+        <td><code>By.NAME("email")</code></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Text Content</td>
+        <td>Match exact text</td>
+        <td><code>//button[text()='Submit']</code></td>
+        <td><code>By.XPATH("//button[text()='Submit']")</code></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Contains()</td>
+        <td>Partial attribute match</td>
+        <td><code>//input[contains(@id, 'name')]</code></td>
+        <td><code>By.CSS_SELECTOR("input[id*='name']")</code></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Starts-with()</td>
+        <td>Match beginning of attribute</td>
+        <td><code>//input[starts-with(@id, 'input-')]</code></td>
+        <td><code>By.CSS_SELECTOR("input[id^='input-']")</code></td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>AND/OR</td>
+        <td>Multiple attribute conditions</td>
+        <td><code>//input[@type='radio' and @value='female']</code></td>
+        <td><code>By.XPATH("//input[@type='radio' and @value='female']")</code></td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Position / Index</td>
+        <td>Find element by order</td>
+        <td><code>(//input[@type='radio'])[2]</code></td>
+        <td><code>By.XPATH("(//input[@type='radio'])[2]")</code></td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>DOM Traversal</td>
+        <td>Find nested elements</td>
+        <td><code>//div[@id='member-count-1']/input</code></td>
+        <td><code>By.ID("input-member-1")</code></td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>Wildcard *</td>
+        <td>Match any tag with condition</td>
+        <td><code>//*[@class='submit-button']</code></td>
+        <td><code>By.CLASS_NAME("submit-button")</code><br><code>By.CSS_SELECTOR(".submit-button")</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
