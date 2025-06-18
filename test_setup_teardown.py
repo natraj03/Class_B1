@@ -8,7 +8,6 @@ workbook = None
 def setup_function():
     global workbook
     workbook = openpyxl.load_workbook("practicefile.xlsx")
-
     print("\n I am setup \nfunction")
 
 
